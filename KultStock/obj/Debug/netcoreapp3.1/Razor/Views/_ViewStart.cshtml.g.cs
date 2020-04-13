@@ -21,13 +21,13 @@ using KultStock;
 #nullable disable
 #nullable restore
 #line 2 "D:\Users\Victor\KultStock\KultStock\Views\_ViewImports.cshtml"
-using KultStock.Models;
+using Stock.Data.Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7091c65830b0329e613be026ede8a57552863778", @"/Views/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d4e18580562b125b1d27d7d2eef2586be74d3131", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8c1c4c6519f2f87ddeacf0b6914452867b32176e", @"/Views/_ViewImports.cshtml")]
     public class Views__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

@@ -168,3 +168,16 @@ D:\Users\Victor\KultStock\KultStock\bin\Debug\netcoreapp3.1\MimeKit.dll
 D:\Users\Victor\KultStock\KultStock\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\KultStock.MvcApplicationPartsAssemblyInfo.cs
 D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\KultStock.MvcApplicationPartsAssemblyInfo.cache
+D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
+D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\Razor\Views\Product\Create.cshtml.g.cs
+D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\Razor\Views\Product\Delete.cshtml.g.cs
+D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\Razor\Views\Product\Details.cshtml.g.cs
+D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\Razor\Views\Product\Edit.cshtml.g.cs
+D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\Razor\Views\Product\Index.cshtml.g.cs
+D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\Razor\Views\Product\Search.cshtml.g.cs
+D:\Users\Victor\KultStock\KultStock\bin\Debug\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+D:\Users\Victor\KultStock\KultStock\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Cryptography.Pkcs.dll
+D:\Users\Victor\KultStock\KultStock\bin\Debug\netcoreapp3.1\Stock.Data.dll
+D:\Users\Victor\KultStock\KultStock\bin\Debug\netcoreapp3.1\Stock.Service.dll
+D:\Users\Victor\KultStock\KultStock\bin\Debug\netcoreapp3.1\Stock.Data.pdb
+D:\Users\Victor\KultStock\KultStock\bin\Debug\netcoreapp3.1\Stock.Service.pdb
