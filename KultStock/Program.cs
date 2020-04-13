@@ -7,27 +7,34 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
-using KultStock.Models;
-using KultStock.Data;
+using Stock.Data.Models;
+using Stock.Data;
+
 using Microsoft.Extensions.DependencyInjection;
+using KultStock.Data;
+using Microsoft.AspNetCore;
 
 namespace KultStock
 {
     public class Program
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
 
-            var host = CreateHostBuilder(args).Build();
+            var host = CreateWebHostBuilder(args).Build();
 
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 try
                 {
+
+                    var context = services.GetRequiredService<WebContext>();
+                    DataBaseInitializer.Initialize(context);
                     var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
                     var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    await RoleInitializer.InitializeAsync(userManager, rolesManager);
+                    Task t = RoleInitializer.InitializeAsync(userManager, rolesManager, context);
+                    t.Wait();
                 }
                 catch (Exception ex)
                 {
@@ -39,11 +46,8 @@ namespace KultStock
             host.Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>();
     }
 }

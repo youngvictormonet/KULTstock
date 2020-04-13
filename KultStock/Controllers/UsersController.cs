@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using KultStock.Models;
+using Stock.Data.Models;
 using KultStock.ViewModels;
 
 namespace KultStock.Controllers
