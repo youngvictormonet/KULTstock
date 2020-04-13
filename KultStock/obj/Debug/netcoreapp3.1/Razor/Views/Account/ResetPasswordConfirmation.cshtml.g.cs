@@ -21,13 +21,13 @@ using KultStock;
 #nullable disable
 #nullable restore
 #line 2 "D:\Users\Victor\KultStock\KultStock\Views\_ViewImports.cshtml"
-using KultStock.Models;
+using Stock.Data.Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e07da2512862a0da25192c7346fc9e76d8a87cbc", @"/Views/Account/ResetPasswordConfirmation.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d4e18580562b125b1d27d7d2eef2586be74d3131", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8c1c4c6519f2f87ddeacf0b6914452867b32176e", @"/Views/_ViewImports.cshtml")]
     public class Views_Account_ResetPasswordConfirmation : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-area", "Identity", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -73,7 +73,7 @@ Write(ViewData["Title"]);
 #line hidden
 #nullable disable
             WriteLiteral("</h2>\r\n<p>\r\n    Ваш пароль сброшен. Для входа в приложение перейдите по ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e07da2512862a0da25192c7346fc9e76d8a87cbc4252", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e07da2512862a0da25192c7346fc9e76d8a87cbc4253", async() => {
                 WriteLiteral("ссылке");
             }
             );

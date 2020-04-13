@@ -12,7 +12,10 @@ using KultStock.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using KultStock.Models;
+using Stock.Data.Models;
+using Stock.Data.Interfaces;
+using Stock.Service;
+using Stock.Data;
 namespace KultStock
 {
     public class Startup
@@ -27,14 +30,19 @@ namespace KultStock
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<WebContext>(options =>
+         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<WebContext>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddScoped<IProduct, ProductService>();
+            services.AddScoped<ICartItem, CartItemService>();
+            services.AddScoped<ICart, CartService>();
+            services.AddScoped<IUser, ShopUserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,7 +71,7 @@ namespace KultStock
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Product}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
