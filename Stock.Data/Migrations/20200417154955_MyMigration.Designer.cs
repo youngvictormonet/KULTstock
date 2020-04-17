@@ -10,8 +10,8 @@ using Stock.Data;
 namespace Stock.Data.Migrations
 {
     [DbContext(typeof(WebContext))]
-    [Migration("20200410201947_WebContextMigration")]
-    partial class WebContextMigration
+    [Migration("20200417154955_MyMigration")]
+    partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -164,12 +164,10 @@ namespace Stock.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -206,12 +204,10 @@ namespace Stock.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(128)")
-                        .HasMaxLength(128);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -269,6 +265,9 @@ namespace Stock.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Accepted")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
