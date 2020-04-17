@@ -33,8 +33,13 @@ namespace KultStock
             services.AddDbContext<WebContext>(options =>
          options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<WebContext>();
+            services.AddIdentity<IdentityUser,IdentityRole>(
+                options => {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireNonAlphanumeric = false;
+                }
+                )
+                .AddDefaultTokenProviders().AddDefaultUI().AddEntityFrameworkStores<WebContext>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

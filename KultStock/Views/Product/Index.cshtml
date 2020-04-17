@@ -46,6 +46,7 @@
     }
     else
     {
+        <a asp-action="Create">Create New</a>
         <div class="row" style="overflow:hidden">
             @foreach (var product in Model.ProductList)
             {
@@ -53,10 +54,10 @@
                     <a asp-area="" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="catalog_item">
                         <div class="catalog_item_img_box">
                             <img src="@product.ImageURL" alt="@product.Name)"
-                                 class="catalog_item_img" width="200" height="100"/>
+                                 class="catalog_item_img" width="200" height="100" />
                         </div>
                         <h2 class="catalog_item_title">@product.Name</h2>
-                        <h3 class="catalog_item_price">@string.Format("{0:C}", product.Price)</h3>
+                        <h3 class="catalog_item_price">@product.Price.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))</h3>
                         <input type="submit" asp-area="" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id" value="buy" class="catalog_item_tocart btn_wide">
                     </a>
                 </form>

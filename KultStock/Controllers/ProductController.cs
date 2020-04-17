@@ -173,7 +173,7 @@ namespace KultStock.Controllers
                 return View();
             }
 
-            [Authorize(Roles = "admin")]
+            //[Authorize(Roles = "admin")]
             [HttpPost]
             [ValidateAntiForgeryToken]
             public async Task<IActionResult> Create([Bind("ID,Name,Description,ImageURL,Price")] Product product)
