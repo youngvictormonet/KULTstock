@@ -26,6 +26,7 @@
             </thead>
             @foreach (var product in Model.ProductList)
             {
+
                 <tbody>
                     <tr>
                         <td>
@@ -37,7 +38,10 @@
                         <td>
                             <a asp-action="Edit" asp-route-id="@product.Id">Edit</a> |
                             <a asp-action="Details" asp-route-id="@product.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+                            <a asp-action="Delete" asp-route-id="@product.Id">Delete</a> |
+                            @if(product.Accepted == "0"){
+                                <a asp-controller="Product" asp-action="Add" asp-route-id="@product.Id">Add item</a>
+                            }
                         </td>
                     </tr>
                 </tbody>
@@ -50,6 +54,8 @@
         <div class="row" style="overflow:hidden">
             @foreach (var product in Model.ProductList)
             {
+                if (product.Accepted == "1")
+                {
                 <form method="post">
                     <a asp-area="" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="catalog_item">
                         <div class="catalog_item_img_box">
@@ -61,6 +67,7 @@
                         <input type="submit" asp-area="" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id" value="buy" class="catalog_item_tocart btn_wide">
                     </a>
                 </form>
+                }
             }
         </div>
     }

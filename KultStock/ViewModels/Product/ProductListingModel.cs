@@ -11,5 +11,6 @@ namespace KultStock.ViewModels.Product
         public string Name { get; set; }
         public string ImageURL { get; set; }
         public decimal Price { get; set; }
+        public string Accepted { get; set; }
     }
 }
