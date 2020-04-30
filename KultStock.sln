@@ -6,11 +6,14 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KultStock", "KultStock\KultStock.csproj", "{FB305BA3-C9B7-414D-8C0C-A53334624F9B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8B7A7308-3168-4C1B-AEAB-5727115B0CC5} = {8B7A7308-3168-4C1B-AEAB-5727115B0CC5}
+		{6EEF69B4-12E4-4BC4-A388-43D955D1118C} = {6EEF69B4-12E4-4BC4-A388-43D955D1118C}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stock.Service", "Stock.Service\Stock.Service.csproj", "{8B7A7308-3168-4C1B-AEAB-5727115B0CC5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stock.Data", "Stock.Data\Stock.Data.csproj", "{33305A16-CCDA-487A-8F38-BFE30C1AA25E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayPalExpress", "PayPalExpress\PayPalExpress.csproj", "{6EEF69B4-12E4-4BC4-A388-43D955D1118C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +33,10 @@ Global
 		{33305A16-CCDA-487A-8F38-BFE30C1AA25E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33305A16-CCDA-487A-8F38-BFE30C1AA25E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33305A16-CCDA-487A-8F38-BFE30C1AA25E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EEF69B4-12E4-4BC4-A388-43D955D1118C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EEF69B4-12E4-4BC4-A388-43D955D1118C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EEF69B4-12E4-4BC4-A388-43D955D1118C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EEF69B4-12E4-4BC4-A388-43D955D1118C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
