@@ -16,6 +16,9 @@ using Stock.Data.Models;
 using Stock.Data.Interfaces;
 using Stock.Service;
 using Stock.Data;
+using PayPalExpress.Interfaces;
+using PayPalExpress.ConfigOptions;
+using PayPalExpress;
 namespace KultStock
 {
     public class Startup
@@ -48,6 +51,10 @@ namespace KultStock
             services.AddScoped<ICartItem, CartItemService>();
             services.AddScoped<ICart, CartService>();
             services.AddScoped<IUser, ShopUserService>();
+            services.AddMvc();
+
+            services.AddSingleton<IPaypalServices, PaypalServices>();
+            services.Configure<PayPalAuthOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,10 +72,15 @@ namespace KultStock
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseDeveloperExceptionPage();
+            app.UseBrowserLink();
             app.UseStaticFiles();
 
+
+ 
             app.UseRouting();
 
+            app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
 
