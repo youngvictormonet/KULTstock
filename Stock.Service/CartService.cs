@@ -83,7 +83,7 @@ namespace Stock.Service
             cart = GetByUserID(id);
 
             var shoppingCartItem = _context.CartItems.SingleOrDefault(ci => ci.Product.Id == product.Id && ci.Cart.CartId == cart.CartId);
-
+            
             if (shoppingCartItem == null)
             {
                 shoppingCartItem = new CartItem
@@ -175,7 +175,20 @@ namespace Stock.Service
             _context.CartItems.RemoveRange(cart.CartItems);
             _context.SaveChanges();
         }
-
+        public void AddTotal(string id)
+        {
+            var cart = GetByUserID(id);
+            decimal total = 0.0M;
+            foreach (var cartItem in cart.CartItems)
+            {
+                total += cartItem.Product.Price * cartItem.Amount;
+            }
+            
+            //cart.Total = total;
+            _context.Carts.FirstOrDefault(x => x.CartId.Equals(cart.CartId)).Total=total;
+            //_context.Carts.Add(new Cart {CartId=3, Total=20.0M });
+             _context.SaveChanges();
+        }
         public decimal GetTotal(string id)
         {
             var cart = GetByUserID(id);
@@ -184,6 +197,7 @@ namespace Stock.Service
             {
                 total += cartItem.Product.Price * cartItem.Amount;
             }
+
             return total;
         }
     }
