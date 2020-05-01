@@ -5,26 +5,37 @@ using PayPalExpress.Interfaces;
 using System;
 using System.Collections.Generic;
 
+using Stock.Data;
+using System.Linq;
+
 namespace PayPalExpress
 {
     public class PaypalServices : IPaypalServices
     {
         private readonly PayPalAuthOptions _options;
-
-        public PaypalServices(IOptions<PayPalAuthOptions> options)
+        private readonly WebContext _context;
+        public PaypalServices(WebContext context,IOptions<PayPalAuthOptions> options)
         {
+            _context = context;
             _options = options.Value;
+            
         }
-
-        public Payment CreatePayment(decimal amount, string returnUrl, string cancelUrl, string intent)
+        public PaypalServices(WebContext context)
         {
+            _context = context;
+        }
+        public Payment CreatePayment(string id, string returnUrl, string cancelUrl, string intent)
+        {
+           // var UserID = _userManager.GetUserId(User);
+           var cart=_context.Carts.FirstOrDefault(x => x.ShopUser.Equals(id));
+
             var apiContext = new APIContext(new OAuthTokenCredential(_options.PayPalClientId, _options.PayPalClientSecret).GetAccessToken());
 
             var payment = new Payment()
             {
                 intent = intent,
                 payer = new Payer() { payment_method = "paypal" },
-                transactions = GetTransactionsList(amount),
+                transactions = GetTransactionsList(cart.Total),
                 redirect_urls = new RedirectUrls()
                 {
                     cancel_url = cancelUrl,

@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Stock.Data;
 using Stock.Data.Interfaces;
+using Newtonsoft.Json;
+
 namespace KultStock.Controllers
 {
     public class CartController : Controller
@@ -48,7 +50,8 @@ namespace KultStock.Controllers
                 CartItemsList = cartItems,
                 Total = _cartService.GetTotal(UserID)
             };
-
+            //TempData["UserData"] = JsonConvert.SerializeObject(model);
+            //TempData["mydata"] = model;
             return View(model);
         }
 
@@ -59,6 +62,7 @@ namespace KultStock.Controllers
             var product = _productService.GetByID(id);
             var userId = _userManager.GetUserId(User);
             _cartService.AddItemToCart(product, userId);
+            _cartService.AddTotal(userId);
             return RedirectToAction("Index");
         }
 
@@ -91,6 +95,7 @@ namespace KultStock.Controllers
         public decimal Total()
         {
             var userId = _userManager.GetUserId(User);
+           
             return _cartService.GetTotal(userId);
         }
     }

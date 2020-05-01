@@ -19,7 +19,7 @@ namespace Stock.Data.Interfaces
         Task DeleteCartItem(CartItem cartItem);
         Task DeleteItemFromCarttt(Product product, string id);
         Task AddItemToCart(Product product, string id);
-
+        void AddTotal(string id);
         int DeleteItemFromCart(Product product, string id);
         int DeleteItemFromCartAtAll(CartItem cartItem, string id);
 

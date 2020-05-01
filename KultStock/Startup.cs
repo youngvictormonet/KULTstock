@@ -44,15 +44,16 @@ namespace KultStock
                 )
                 .AddDefaultTokenProviders().AddDefaultUI().AddEntityFrameworkStores<WebContext>();
 
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddControllersWithViews().AddSessionStateTempDataProvider();
+            services.AddRazorPages().AddSessionStateTempDataProvider();
 
             services.AddScoped<IProduct, ProductService>();
             services.AddScoped<ICartItem, CartItemService>();
             services.AddScoped<ICart, CartService>();
             services.AddScoped<IUser, ShopUserService>();
-            services.AddMvc();
-
+            services.AddMemoryCache();
+            services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddSession();
             services.AddSingleton<IPaypalServices, PaypalServices>();
             services.Configure<PayPalAuthOptions>(Configuration);
         }
@@ -71,6 +72,7 @@ namespace KultStock
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseDeveloperExceptionPage();
             app.UseBrowserLink();
@@ -80,7 +82,7 @@ namespace KultStock
  
             app.UseRouting();
 
-            app.UseRouting();
+            app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
 

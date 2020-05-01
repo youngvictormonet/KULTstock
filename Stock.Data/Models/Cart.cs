@@ -11,6 +11,7 @@ namespace Stock.Data.Models
 
         public virtual IdentityUser ShopUser { get; set; }
 
+        public decimal Total { get; set; }
         public virtual IEnumerable<CartItem> CartItems { get; set; }
     }
 }

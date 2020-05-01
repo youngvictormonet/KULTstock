@@ -33,13 +33,22 @@ namespace KultStock.Controllers
 
             public IActionResult Index()
             {
+            
                 IEnumerable<ProductListingModel> products = _productService.GetAll().Select(product => new ProductListingModel
                 {
                     Id = product.Id,
                     Name = product.Name,
                     ImageURL = product.ImageURL,
                     Price = product.Price,
-                    Accepted=product.Accepted
+                    Type = product.Type,
+                    Style = product.Style,
+                    Country = product.Country,
+                    City = product.City,
+                    Adress = product.Adress,
+                    Date = product.Date,
+                    Time = product.Time,
+                    Age = product.Age,
+                    Accepted =product.Accepted
                 });
 
                 ProductIndexModel model = new ProductIndexModel
@@ -62,7 +71,15 @@ namespace KultStock.Controllers
                         Name = product.Name,
                         ImageURL = product.ImageURL,
                         Price = product.Price,
-                        Accepted=product.Accepted
+                        Type = product.Type,
+                        Style = product.Style,
+                        Country = product.Country,
+                        City = product.City,
+                        Adress = product.Adress,
+                        Date = product.Date,
+                        Time = product.Time,
+                        Age = product.Age,
+                        Accepted =product.Accepted
                     });
 
                     var model = new SearchIndexModel
@@ -88,6 +105,14 @@ namespace KultStock.Controllers
                     Name = product.Name,
                     ImageURL = product.ImageURL,
                     Price = product.Price,
+                    Type = product.Type,
+                    Style = product.Style,
+                    Country = product.Country,
+                    City = product.City,
+                    Adress = product.Adress,
+                    Date = product.Date,
+                    Time = product.Time,
+                    Age = product.Age,
                     Description = product.Description
                 };
                 return View(model);
@@ -165,7 +190,7 @@ namespace KultStock.Controllers
             //[Authorize(Roles = "admin")]
             [HttpPost]
             [ValidateAntiForgeryToken]
-            public async Task<IActionResult> Create([Bind("ID,Name,Description,ImageURL,Price,Accepted")] Product product)
+            public async Task<IActionResult> Create([Bind("ID,Name,Description,ImageURL,Price,Type,Style,Country,City,Adress,Date,Time,Age,Accepted")] Product product)
             {
             if (User.IsInRole("admin"))
             {

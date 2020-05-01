@@ -10,8 +10,8 @@ using Stock.Data;
 namespace Stock.Data.Migrations
 {
     [DbContext(typeof(WebContext))]
-    [Migration("20200417154955_MyMigration")]
-    partial class MyMigration
+    [Migration("20200501120638_FinalMig2")]
+    partial class FinalMig2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -227,6 +227,9 @@ namespace Stock.Data.Migrations
                     b.Property<string>("ShopUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("CartId");
 
                     b.HasIndex("ShopUserId");
@@ -269,6 +272,21 @@ namespace Stock.Data.Migrations
                     b.Property<string>("Accepted")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Adress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Age")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -280,6 +298,15 @@ namespace Stock.Data.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
+
+                    b.Property<string>("Style")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
