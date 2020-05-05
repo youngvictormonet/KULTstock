@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 /******************************
@@ -229,8 +229,8 @@ section
 {
 	padding: 0px !important;
 }
-.button
-{
+
+.button {
 	width: 178px;
 	height: 61px;
 	background: none;
@@ -443,6 +443,7 @@ section
 {
 
 }
+
 .shopping_cart
 {
 	display: inline-block;

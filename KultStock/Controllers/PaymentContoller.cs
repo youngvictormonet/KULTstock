@@ -34,9 +34,9 @@ namespace KultStock.Controllers
             //CartIndexModel cart = TempData["mydata"] as CartIndexModel;
             //var story = JsonConvert.DeserializeObject<CartIndexModel>(TempData["model"].ToString());
             //decimal amount = 100;
-            var UserID = _userManager.GetUserId(User);
+            //var UserID = _userManager.GetUserId(User);
             //var cart=_context.Carts.FirstOrDefault(x => x.ShopUser.Equals(UserID));
-            var payment = _PaypalServices.CreatePayment(UserID, "https://localhost:44300/Payment/ExecutePayment", "https://localhost:44300/Payment/Cancel", "sale");
+            var payment = _PaypalServices.CreatePayment(150, "https://localhost:44300/Payment/ExecutePayment", "https://localhost:44300/Payment/Cancel", "sale");
 
             return new JsonResult(payment);
         }
