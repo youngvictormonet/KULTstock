@@ -13,21 +13,18 @@ namespace PayPalExpress
     public class PaypalServices : IPaypalServices
     {
         private readonly PayPalAuthOptions _options;
-        private readonly WebContext _context;
-        public PaypalServices(WebContext context,IOptions<PayPalAuthOptions> options)
+        //private readonly WebContext _context;
+        public PaypalServices(IOptions<PayPalAuthOptions> options)
         {
-            _context = context;
+            //_context = context;
             _options = options.Value;
             
         }
-        public PaypalServices(WebContext context)
-        {
-            _context = context;
-        }
-        public Payment CreatePayment(string id, string returnUrl, string cancelUrl, string intent)
+
+        public Payment CreatePayment(decimal amount, string returnUrl, string cancelUrl, string intent)
         {
            // var UserID = _userManager.GetUserId(User);
-           var cart=_context.Carts.FirstOrDefault(x => x.ShopUser.Equals(id));
+           //var cart=_context.Carts.FirstOrDefault(x => x.ShopUser.Equals(id));
 
             var apiContext = new APIContext(new OAuthTokenCredential(_options.PayPalClientId, _options.PayPalClientSecret).GetAccessToken());
 
@@ -35,7 +32,7 @@ namespace PayPalExpress
             {
                 intent = intent,
                 payer = new Payer() { payment_method = "paypal" },
-                transactions = GetTransactionsList(cart.Total),
+                transactions = GetTransactionsList(amount),
                 redirect_urls = new RedirectUrls()
                 {
                     cancel_url = cancelUrl,
