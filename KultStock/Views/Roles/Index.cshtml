@@ -2,22 +2,24 @@
 
 <h2>Role list</h2>
 <table class="table">
-    @foreach (var role in Model)
-    {
-        <tr>
-            <td>@role.Name</td>
-            <td>
-                <form asp-action="Delete" asp-route-id="@role.Id" method="post">
-                    <button type="submit" class="btn btn-sm btn-danger">
-                        Delete
-                    </button>
-                </form>
+    <div style="padding-top:100px;">
+        @foreach (var role in Model)
+        {
+            <tr>
+                <td>@role.Name</td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@role.Id" method="post">
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Delete
+                        </button>
+                    </form>
 
-            </td>
-        </tr>
-    }
+                </td>
+            </tr>
+        }
+    </div>
 </table>
 
-<a asp-action="Create">Add Role </a>
-<a asp-action="UserList">List user</a>
+<a asp-action="Create"  style="        padding-top: 150px;">Add Role </a>
+<a asp-action="UserList"  style="padding-top:150px;">List user</a>
 

@@ -1,0 +1,43 @@
+﻿@model KultStock.ViewModels.Product.ProductIndexModel
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Find";
+}
+
+
+
+
+    <div style="padding-top:100px;padding-left:50px;">
+        <h1>Find</h1>
+
+
+
+        @using (Html.BeginForm("Find", "Product", FormMethod.Get))
+        {
+            var select = Model.ProductList.Select(x => x.Type);
+            @Html.DropDownListFor(m => select, new SelectList(select, "Name"), "Please select")
+            <input type="submit" value="Send" />
+
+
+        }
+        @using (Html.BeginForm("Find", "Product", FormMethod.Post))
+        {
+            
+            if (Model != null)
+            {
+                foreach (var i in Model.ProductList)
+                {
+                    <a> @i.Type</a>
+                }
+            }
+
+        }
+    </div>
+
+@*Html.DropDownListFor(m => m.Type, new SelectList(Model.ProductList.Select(x => x.Name), "Name"), "Choose your type");*@
+
+
+

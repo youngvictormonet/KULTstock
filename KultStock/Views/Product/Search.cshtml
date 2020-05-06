@@ -58,7 +58,7 @@
                                  class="catalog_item_img" />
                         </div>
                         <h2 class="catalog_item_title">@product.Name</h2>
-                        <h3 class="catalog_item_price">@string.Format("{0:C}", product.Price)</h3>
+                        <h3 class="catalog_item_price">@product.Price.ToString("F0") $</h3>
                         <input type="submit" asp-area="" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id" value="buy" class="catalog_item_tocart btn_wide">
                     </a>
                     <input type="hidden" asp-for="@product.Id" name="id" />
