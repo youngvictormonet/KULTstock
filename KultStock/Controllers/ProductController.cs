@@ -178,6 +178,45 @@ namespace KultStock.Controllers
                 return View();
             }
 
+        [HttpGet]
+        public IActionResult Find()
+        {
+
+            IEnumerable<ProductListingModel> products = _productService.GetAll().Select(product => new ProductListingModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                ImageURL = product.ImageURL,
+                Price = product.Price,
+                Type = product.Type,
+                Style = product.Style,
+                Country = product.Country,
+                City = product.City,
+                Adress = product.Adress,
+                Date = product.Date,
+                Time = product.Time,
+                Age = product.Age,
+                Accepted = product.Accepted
+            });
+
+            ProductIndexModel model = new ProductIndexModel
+            {
+                ProductList = products
+            };
+
+
+
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult Find(ProductIndexModel model)
+        {
+
+
+            
+
+            return View(model);
+        }
 
         public async Task <IActionResult> Add(int id)
         {
