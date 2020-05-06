@@ -34,10 +34,10 @@ namespace Stock.Service
 
         public IEnumerable<Product> GetAllFiltered(string searchQuery)
         {
-            return
-                string.IsNullOrEmpty(searchQuery)
-                ? GetAll()
-                : GetAll().Where(product => product.Name.ToLower().Contains(searchQuery.ToLower()) || product.Description.ToLower().Contains(searchQuery.ToLower()));
+            return GetAll().Where(product => (product.Name!=null&& product.Name.ToLower().Contains(searchQuery.ToLower())) 
+            || (product.Description != null && product.Description.ToLower().Contains(searchQuery.ToLower()))
+            || (product.Type != null && product.Type.ToLower().Contains(searchQuery.ToLower()))
+            || (product.Style != null && product.Style.ToLower().Contains(searchQuery.ToLower())));
         }
 
 

@@ -220,3 +220,4 @@ D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\Razor\Areas\Identity
 D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
 D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
 D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\Index.cshtml.g.cs
+D:\Users\Victor\KultStock\KultStock\obj\Debug\netcoreapp3.1\Razor\Views\Product\Find.cshtml.g.cs
