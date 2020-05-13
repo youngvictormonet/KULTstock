@@ -51,6 +51,8 @@
         <div class="catalog search_results">
             @foreach (var product in Model.ProductList)
             {
+                if (product.Accepted == "1")
+                {
                 <form method="post">
                     <a asp-area="" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="catalog_item">
                         <div class="catalog_item_img_box">
@@ -66,6 +68,7 @@
                     <input type="hidden" asp-for="@product.ImageURL" name="imageURL" />
                     <input type="hidden" asp-for="@product.Price" name="price" />
                 </form>
+                }
             }
         </div>
     }
