@@ -1,0 +1,345 @@
+﻿@model KultStock.ViewModels.Product.ProductIndexModel
+@using Microsoft.AspNetCore.Identity
+@using System.ComponentModel.DataAnnotations;
+@using Microsoft.AspNetCore.Http
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "catalog";
+}
+
+
+
+<head>
+    <title>KultStock</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="KultStock project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+    <link href="plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/responsive.css">
+
+</head>
+@if (Model.ProductList.Any())
+{
+    @if (User.IsInRole("admin"))
+    {
+        <a asp-action="Create">Create New</a>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (var product in Model.ProductList)
+            {
+
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => product.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => product.Price)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@product.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@product.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@product.Id">Delete</a> |
+                            @if (product.Accepted == "0")
+                            {
+                                <a asp-controller="Product" asp-action="Add" asp-route-id="@product.Id">Add item</a>
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    }
+    else
+    {
+
+        @*
+            <a asp-action="Create">Create New</a>
+            <div class="row" style="overflow: hidden ">
+                @foreach (var product in Model.ProductList)
+                {
+                    if (product.Accepted == "1")
+                    {
+                        <form method="post">
+                            <a asp-area="" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="catalog_item">
+                                <div class="catalog_item_img_box">
+                                    <img src="@product.ImageURL" alt="@product.Name)"
+                                         class="catalog_item_img" width="200" height="100" />
+                                </div>
+                                <h2 class="catalog_item_title">@product.Name</h2>
+                                <h3 class="catalog_item_price">@product.Price.ToString("C", System.Globalization.CultureInfo.CreateSpecificCulture("en-US"))</h3>
+                                <input type="submit" asp-area="" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id" value="buy" class="catalog_item_tocart btn_wide">
+                            </a>
+                        </form>
+                    }
+                }
+            </div>
+        *@
+
+        <!-- Header -->
+<div class="super_container">
+
+
+    <!-- Home -->
+
+    <div class="home">
+        <div class="home_slider_container">
+
+            <!-- Home Slider -->
+            <div class="owl-carousel owl-theme home_slider">
+
+                <!-- Slider Item -->
+                <div class="owl-item home_slider_item">
+                    <div class="home_slider_background" style="background-image:url(https://images.dailyhive.com/20170426010155/The-Weeknd-%40-Rogers-Brandon-Artis-Photography-10.jpg)"></div>
+                    <div class="home_slider_content_container">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="home_slider_content" data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
+                                        <div class="home_slider_title">The Weeknd</div>
+                                        <div class="home_slider_subtitle">Concert you will never forget</div>
+                                        <div class="button button_light home_button" ><a  asp-controller="Cart" asp-action="AddToCart" asp-route-id="25" >Buy tickets Now</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider Item -->
+                <div class="owl-item home_slider_item">
+                    <div class="home_slider_background" style="background-image:url(https://assets-ssl.nnm-club.ws/forum/image.php?link=http://i17.kanobu.ru/r/5f742e26a72d36223b9b05d4d9d64b3c/1040x700/u.kanobu.ru/editor/images/85/f549d5d1-96af-4583-bba4-e9d3cd5b144a.jpg)"></div>
+                    <div class="home_slider_content_container">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="home_slider_content" data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
+                                        <div class="home_slider_title">Tyler,the Creator.</div>
+                                        <div class="home_slider_subtitle">Only this summer!</div>
+                                        <div class="button button_light home_button"><a asp-controller="Cart" asp-action="AddToCart" asp-route-id="29">Buy tickets Now</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slider Item -->
+                <div class="owl-item home_slider_item">
+                    <div class="home_slider_background" style="background-image:url(https://www.rbc.ua/static/img/t/h/the_neighbourhood_650x410.jpg)"></div>
+                    <div class="home_slider_content_container">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="home_slider_content" data-animation-in="fadeIn" data-animation-out="animate-out fadeOut">
+                                        <div class="home_slider_title">The Neighbourhood</div>
+                                        <div class="home_slider_subtitle">Rock-starts at the main stage of the festival</div>
+                                        <div class="button button_light home_button"><a asp-controller="Cart" asp-action="AddToCart" asp-route-id="28">Buy tickets Now</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Home Slider Dots -->
+
+            <div class="home_slider_dots_container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="home_slider_dots">
+                                <ul id="home_slider_custom_dots" class="home_slider_custom_dots">
+                                    <li class="home_slider_custom_dot active">01.</li>
+                                    <li class="home_slider_custom_dot">02.</li>
+                                    <li class="home_slider_custom_dot">03.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Ads -->
+
+    <div class="avds"  style="background-color:#8A2BE2;">
+        <div class="avds_container d-flex flex-lg-row flex-column align-items-start justify-content-between">
+            <div class="avds_small">
+                <div class="avds_background" style="background-image:url(https://sites.google.com/site/thelittleprincewebquest/_/rsrc/1299891354567/home/al_st_exupery07_le_petit_prince5.jpg)"></div>
+                <div class="avds_small_inner">
+
+                    <div class="avds_small_content">
+                        <div class="avds_title">For children...and adults</div>
+                        <div class="avds_link"><a asp-controller="Product" asp-action="Search" asp-all-route-data='new Dictionary<string, string> { { "searchQuery", "children" } }' type="submit" >See more</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="avds_large">
+                <div class="avds_background" style="background-image:url(https://i.timeout.ru/pix/resize/389/571/590x400.jpeg)"></div>
+                <div class="avds_large_container">
+                    <div class="avds_large_content">
+                        <div class="avds_title">Theater</div>
+                        <div class="avds_text">Join this unforgattable experience!</div>
+                        <div class="avds_link avds_link_large"><a asp-controller="Product" asp-action="Search" asp-all-route-data='new Dictionary<string, string> { { "searchQuery", "Theater" } }' type="submit">See more</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products -->
+    <div class="products" style="background-size:100px; background-image:url(https://www.netclipart.com/pp/m/229-2298510_globe-web-online-monitor-connect-svg-png-.png)">
+
+        <h3 style="color:black;padding-left:20px;background-color:#FF8C00;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Make your day interesting</h3>
+        <h2 style="color:black;padding-left:20px;background-color:#FF8C00;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">choose your Online event!</h2>
+  
+        <div class="container" >
+            <div class="row">
+                <div class="col">
+
+                    
+                        <div class="catalog">
+                            @foreach (var product in Model.ProductList)
+                            {
+                                if (product.Accepted == "1" && (product.Type == "Online" || product.Style == "Online"))
+                                {
+                                <form method="post">
+                                    <a asp-area="" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="catalog_item">
+                                        <div class="catalog_item_img_box">
+                                            <img src="@product.ImageURL" alt="@product.Name)"
+                                                 class="catalog_item_img" />
+                                        </div>
+                                        <h2 class="catalog_item_title">@product.Name</h2>
+                                        <h3 class="catalog_item_price">@product.Price.ToString("F0") $</h3>
+                                        <input type="submit" asp-area="" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id" value="buy" class="catalog_item_tocart btn_wide">
+                                    </a>
+                                </form>
+                                }
+                            }
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                        <!-- Ad -->
+
+                        <div class="avds_xl" style="background-color:black;">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="avds_xl_container clearfix">
+                                            <div class="avds_xl_background" style="background-image:url(https://kawa-news.com/wp-content/uploads/boiler_room_Foto-Bud-X-Boiler-1-1280x853_5d03b0461d5ed-1.jpg)"></div>
+                                            <div class="avds_xl_content">
+                                                <div class="avds_title">Amazing parties</div>
+                                                <div class="avds_text">of all kind of sound...</div>
+                                                <div class="avds_link avds_xl_link"><a asp-controller="Product" asp-action="Search" asp-all-route-data='new Dictionary<string, string> { { "searchQuery", "Party" } }' type="submit">See more</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Newsletter -->
+
+                        <div class="newsletter">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="newsletter_border"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8 offset-lg-2">
+                                        <div class="newsletter_content text-center">
+                                            <div class="newsletter_title">Subscribe to our newsletter</div>
+                                            
+                                            <div>
+                                                <form action="#" id="newsletter_form" class="newsletter_form">
+                                                    <input type="email" class="newsletter_input" required="required">
+                                                    <button class="newsletter_button trans_200"><span>Subscribe</span></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+
+                        <div class="footer_overlay">
+                            <footer class="footer">
+                                <div class="footer_background" style="background-color:darkgrey"></div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="footer_content d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
+                                                <div class="footer_logo"><a href="#">KULTstock.</a></div>
+                                                <div class="copyright ml-auto mr-auto">
+
+
+                                                    <script>document.write(new Date().getFullYear());</script> All rights reserved
+                                                </div>
+                                                <div class="footer_social ml-lg-auto">
+                                                    <ul>
+                                                        <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </footer>
+                        </div>
+                    </div>
+                    <script src="js/jquery-3.2.1.min.js"></script>
+                    <script src="styles/bootstrap4/popper.js"></script>
+                    <script src="styles/bootstrap4/bootstrap.min.js"></script>
+                    <script src="plugins/greensock/TweenMax.min.js"></script>
+                    <script src="plugins/greensock/TimelineMax.min.js"></script>
+                    <script src="plugins/scrollmagic/ScrollMagic.min.js"></script>
+                    <script src="plugins/greensock/animation.gsap.min.js"></script>
+                    <script src="plugins/greensock/ScrollToPlugin.min.js"></script>
+                    <script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+                    <script src="plugins/Isotope/isotope.pkgd.min.js"></script>
+                    <script src="plugins/easing/easing.js"></script>
+                    <script src="plugins/parallax-js-master/parallax.min.js"></script>
+                    <script src="js/custom.js"></script>
+                    }
+                    }
+                    else
+                    {
+                    <h2 id="no_items" style="opacity: 1">No Items</h2>
+                    }
+

@@ -1,6 +1,6 @@
 using System;
 
-namespace KultStock.Models
+namespace Stock.Data.Models
 {
     public class ErrorViewModel
     {

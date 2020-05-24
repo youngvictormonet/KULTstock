@@ -2,11 +2,12 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using KultStock.Models;
+using Stock.Data.Models;
 using KultStock.ViewModels;
-
+using Microsoft.AspNetCore.Authorization;
 namespace KultStock.Controllers
 {
+    //[Authorize(Roles = "admin")]
     public class UsersController : Controller
     {
         UserManager<IdentityUser> _userManager;

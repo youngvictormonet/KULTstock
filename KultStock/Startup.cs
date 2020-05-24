@@ -12,7 +12,13 @@ using KultStock.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using KultStock.Models;
+using Stock.Data.Models;
+using Stock.Data.Interfaces;
+using Stock.Service;
+using Stock.Data;
+using PayPalExpress.Interfaces;
+using PayPalExpress.ConfigOptions;
+using PayPalExpress;
 namespace KultStock
 {
     public class Startup
@@ -27,14 +33,29 @@ namespace KultStock
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDbContext<WebContext>(options =>
+         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddControllersWithViews();
-            services.AddRazorPages();
+            services.AddIdentity<IdentityUser,IdentityRole>(
+                options => {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireNonAlphanumeric = false;
+                }
+                )
+                .AddDefaultTokenProviders().AddDefaultUI().AddEntityFrameworkStores<WebContext>();
+
+            services.AddControllersWithViews().AddSessionStateTempDataProvider();
+            services.AddRazorPages().AddSessionStateTempDataProvider();
+
+            services.AddScoped<IProduct, ProductService>();
+            services.AddScoped<ICartItem, CartItemService>();
+            services.AddScoped<ICart, CartService>();
+            services.AddScoped<IUser, ShopUserService>();
+            services.AddMemoryCache();
+            services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddSession();
+            services.AddSingleton<IPaypalServices, PaypalServices>();
+            services.Configure<PayPalAuthOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,11 +72,17 @@ namespace KultStock
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
+            app.UseDeveloperExceptionPage();
+            app.UseBrowserLink();
             app.UseStaticFiles();
 
+
+ 
             app.UseRouting();
 
+            app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -63,7 +90,7 @@ namespace KultStock
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Product}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

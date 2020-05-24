@@ -4,9 +4,33 @@
     ViewData["Title"] = "Register";
 }
 
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<head>
+    <title>KultStock</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="KultStock project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - KultStock</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="~/styles/bootstrap4/bootstrap.min.css">
+    <link href="~/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/styles/responsive.css">
+
+</head>
 <h1>@ViewData["Title"]</h1>
 
-<div class="row">
+<div class="row" style="padding-top:20px;padding-left:100px;padding-bottom:50px;">
     <div class="col-md-4">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h4>Create a new account.</h4>
@@ -38,10 +62,7 @@
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
                     <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
+
                     </div>
                 }
                 else
@@ -61,7 +82,33 @@
         </section>
     </div>
 </div>
+<div class="footer_overlay">
+    <footer class="footer">
+        <div class="footer_background" style="background-color:darkgray"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="footer_content d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
+                        <div class="footer_logo"><a href="#">KULTstock.</a></div>
+                        <div class="copyright ml-auto mr-auto">
 
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved
+
+                        </div>
+                        <div class="footer_social ml-lg-auto">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
