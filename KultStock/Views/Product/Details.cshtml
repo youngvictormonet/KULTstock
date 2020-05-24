@@ -29,7 +29,7 @@
             <!-- Product Image -->
             <div class="col-lg-6">
                 <div class="details_image">
-                    <div class="details_image_large"><img src="@Model.ImageURL" alt=""><div class="product_extra product_new"><a href="categories.html">New</a></div></div>
+                    <div class="details_image_large"><img src="@Model.ImageURL" alt=""></div>
                     
                 </div>
             </div>
@@ -40,34 +40,34 @@
                     <div class="details_name">@Model.Name</div>
                     <div class="details_price">Price:@Model.Price</div>
                     <div class="details_text">@Model.Description</div>
-                    <div class="details_text">Date:@Model.Date.Day.@Model.Date.Month.@Model.Date.Year  @Model.Date.Hour:@Model.Date.Minute </div>
-                
-                    <!-- In Stock -->
-                    <div class="in_stock_container">
-                        <div class="availability">Availability:</div>
-                        <span>Available</span>
-                    </div>
-                    <div class="details_text">
-                        <p>@Model.Description</p>
-                    </div>
+                    <div class="details_text">Date: @Model.Date.Day.@Model.Date.Month.@Model.Date.Year </div>
+                    <div class="details_text">Time: @Model.Date.TimeOfDay</div>
+                        <!-- In Stock -->
+                        <div class="in_stock_container">
+                            <div class="availability">Availability:</div>
+                            <span>Available</span>
+                        </div>
+                        <div class="details_text">
+                            <p>@Model.Description</p>
+                        </div>
 
-                    <!-- Product Quantity -->
-                    <div class="product_quantity_container">
-                        
-                        <div class="button cart_button"><a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id">Add to cart</a></div>
-                    </div>
+                        <!-- Product Quantity -->
+                        <div class="product_quantity_container">
 
-                    <!-- Share -->
-                    <div class="details_share">
-                        <span>Share:</span>
-                        <ul>
-                            <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        </ul>
+                            <div class="button cart_button"><a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id">Add to cart</a></div>
+                        </div>
+
+                        <!-- Share -->
+                        <div class="details_share">
+                            <span>Share:</span>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
 
