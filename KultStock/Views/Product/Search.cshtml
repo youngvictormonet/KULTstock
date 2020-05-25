@@ -80,7 +80,8 @@
                                 </div>
                                 <h2 class="catalog_item_title" style="text-align:center;font-size:20px;">@product.Name</h2>
                                 <h3 class="catalog_item_price">@product.Price.ToString("F0") $</h3>
-                                <input type="submit" asp-area="" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id" value="buy" class="catalog_item_tocart btn_wide">
+                                <input type="submit" asp-area="" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id" 
+                                       value="buy" class="catalog_item_tocart btn_wide">
                             </a>
                             <input type="hidden" asp-for="@product.Id" name="id" />
                             <input type="hidden" asp-for="@product.Name" name="name" />
