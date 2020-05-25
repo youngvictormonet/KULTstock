@@ -1,0 +1,133 @@
+﻿@model IEnumerable<Product>
+@using System.Globalization
+@{
+    ViewData["Title"] = "All";
+}
+<head>
+    <style>
+       table tr a{
+            color:black;
+
+        }
+        h2{
+            color:black;
+        }
+    </style>
+</head>
+
+@if (Model.Any())
+{
+    <div class="super_container" style="padding-top: 150px; background-color:#cc6699">
+        @using (Html.BeginForm()) { 
+        <table style="padding-left: 20px;">
+            <tr>
+                <a style="color:black">Sort by:</a>
+                <th>
+                    <a style="color:black">Type:</a> @Html.DropDownList("Type", ViewBag.Type as IEnumerable<SelectListItem>, "Select")
+                </th>
+                <th>
+                    <a style="color:black">Style:</a> @Html.DropDownList("Style", ViewBag.Style as IEnumerable<SelectListItem>, "Select")
+</th>
+                <a style="padding-left:280px;color:black"> Order by price:</a>
+                <th style="padding-left:10px;">
+                    @Html.DropDownList("Price", new List<SelectListItem>{ new SelectListItem { Text="Order by descending", Value="1" } ,
+                   new SelectListItem{Text="Order by increasing", Value="2" } }
+
+               , "Select")
+                </th>
+                <th>
+                    <input type="submit" value="Search" />
+                </th>
+            </tr>
+        </table>
+        }
+        <br />
+        @if (User.IsInRole("admin"))
+        {
+            <a asp-action="Create">Create New</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var product in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => product.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => product.Price)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@product.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@product.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        }
+        else
+        {
+    <div class=" container catalog search_results">
+
+
+        @foreach (var month in Model.GroupBy(x => x.Date.Month).Select(x => x.Key))
+        {
+            <br />
+
+            System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-EN");
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
+            <h2 style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">@CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(@month)</h2>
+
+
+
+            @foreach (var product in Model)
+            {
+                if (product.Accepted == "1")
+                {
+                    if (month == product.Date.Month)
+                    {
+
+                        <form method="post">
+                            <a asp-area="" asp-controller="Product" asp-action="Details" asp-route-id="@product.Id" class="catalog_item">
+                                <div class="catalog_item_img_box">
+                                    <img src="@product.ImageURL" alt="@product.Name)"
+                                         class="catalog_item_img" />
+                                </div>
+                                <h2 class="catalog_item_title" style="text-align:center;font-size:20px;">@product.Name</h2>
+                                <h3 class="catalog_item_price">@product.Price.ToString("F0") $</h3>
+                                <input type="submit" asp-area="" asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id" value="buy" class="catalog_item_tocart btn_wide">
+                            </a>
+                            <input type="hidden" asp-for="@product.Id" name="id" />
+                            <input type="hidden" asp-for="@product.Name" name="name" />
+                            <input type="hidden" asp-for="@product.ImageURL" name="imageURL" />
+                            <input type="hidden" asp-for="@product.Price" name="price" />
+                        </form>
+
+                    }
+                }
+            }
+
+
+        }
+
+
+    </div>
+        }
+    </div>
+        }
+        else
+        {
+        <h2 id="no_items" style="opacity: 1">No Items</h2>
+        }

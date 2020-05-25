@@ -12,6 +12,7 @@ using KultStock.Data;
 using Stock.Data;
 using Stock.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace KultStock.Controllers
 {
@@ -60,6 +61,94 @@ namespace KultStock.Controllers
             }
 
             [HttpGet]
+            public IActionResult All()
+            {
+            ViewBag.Type = _context.Products.GroupBy(x => x.Type).Select(i => new
+              SelectListItem()
+            {
+                Text = i.Key,
+                Value = i.Key
+            }).ToList();
+
+            ViewBag.Style = _context.Products.GroupBy(x => x.Style).Select(i => new
+                 SelectListItem()
+            {
+                Text = i.Key,
+                Value = i.Key
+            }).ToList();
+
+            var products = _context.Products;   
+
+            return View(products.OrderBy(x => x.Date).ToList());
+            }
+
+        [HttpPost]
+        public IActionResult All(string Type,string Style,string Price)
+        {
+
+            ViewBag.Type = _context.Products.GroupBy(x=>x.Type).Select(i => new
+            SelectListItem()
+            {
+                Text = i.Key,
+                Value = i.Key
+            }).ToList();
+
+            ViewBag.Style = _context.Products.GroupBy(x => x.Style).Select(i => new
+            SelectListItem()
+            {
+                Text = i.Key,
+                Value = i.Key
+            }).ToList();
+
+            List<Product>products=new List<Product>();
+            if (Price == "1")
+            {
+                if (Type != null && Style != null)
+                {
+                    products = _context.Products.Where(
+                        x => (x.Type == Type || x.Style == Type) &&
+                        (x.Style == Style)
+                        ).OrderByDescending(x=>x.Price).ThenBy(x => x.Date).ToList();
+                }
+                else if (Type != null)
+                {
+                    products = _context.Products.Where(
+                      x => (x.Type == Type || x.Style == Type)
+                      ).OrderByDescending(x => x.Price).ThenBy(x => x.Date).ToList();
+                }
+                else
+                {
+                    products = _context.Products.Where(
+                      x => (x.Style == Style)
+                      ).OrderByDescending(x => x.Price).ThenBy(x => x.Date).ToList();
+                }
+            }
+            else
+            {
+                if (Type != null && Style != null)
+                {
+                    products = _context.Products.Where(
+                        x => (x.Type == Type || x.Style == Type) &&
+                        (x.Style == Style)
+                        ).OrderBy(x => x.Price).ThenBy(x => x.Date).ToList();
+                }
+                else if (Type != null)
+                {
+                    products = _context.Products.Where(
+                      x => (x.Type == Type || x.Style == Type)
+                      ).OrderBy(x => x.Price).ThenBy(x => x.Date).ToList();
+                }
+                else
+                {
+                    products = _context.Products.Where(
+                      x => (x.Style == Style)
+                      ).OrderBy(x => x.Price).ThenBy(x=>x.Date).ToList();
+                }
+            }
+            return View(products.ToList());
+        }
+
+        [HttpGet]
             public IActionResult Search(string searchQuery)
             {
                 if (!string.IsNullOrEmpty(searchQuery))

@@ -96,6 +96,7 @@
                                     <li class="hassubs">
                                         <a>Categories</a>
                                         <ul>
+                                            <li><a asp-controller="Product" asp-action="All"  type="submit" id="searchBtn" class="search_btn btn">All</a></li>
                                             <li>
                                                 <a asp-controller="Product" asp-action="Search" asp-all-route-data='new Dictionary<string, string> { { "searchQuery", "Concerts" } }' type="submit" id="searchBtn" class="search_btn btn" value="Concerts"> Concerts</a>
                                             </li>
