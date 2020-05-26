@@ -36,7 +36,9 @@ namespace KultStock.Controllers
             //decimal amount = 100;
             //var UserID = _userManager.GetUserId(User);
             //var cart=_context.Carts.FirstOrDefault(x => x.ShopUser.Equals(UserID));
-            var payment = _PaypalServices.CreatePayment(680, "https://localhost:44300/Payment/ExecutePayment", "https://localhost:44300/Payment/Cancel", "sale");
+            string user = _userManager.GetUserId(User);
+            decimal cart = _context.Carts.Where(x => x.ShopUser.Id.Equals(user)).Select(r => r.Total).FirstOrDefault();
+            var payment = _PaypalServices.CreatePayment(cart, "https://localhost:44300/Payment/ExecutePayment", "https://localhost:44300/Payment/Cancel", "sale");
 
             return new JsonResult(payment);
         }
